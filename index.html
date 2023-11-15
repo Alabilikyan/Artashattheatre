@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="footer.css">
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
 </head>
 <body>
   <nav>
@@ -165,7 +163,7 @@
         </div>
         <div class="right-side">
 
-          <form onsubmit="sendEmail(); reset(); return false;">
+          <form onsubmit="SendEmail(); reset(); return false;">
 
             <div class="input-box">
               <input type="text" id="name" placeholder="Անուն Ազգանուն" required>
@@ -224,20 +222,27 @@
   <script src="script.js"></script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script>
+function SendEmail(){
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let message = document.getElementById("message").value;
+
+    let body = "Name: " + name + "<br/>Email: " + email + "<br/>Phone :" + phone + "<br/>Message: " + message
+
     Email.send({
       SecureToken : "1457716a-7108-4aa7-a30f-92ba127b8239",
-      To : 'alabilikyan.98@gmail.com',
-      From : 'artashattatron@mail.ru',
+      To : 'artashattatron@mail.ru',
+      From : 'alabilikyan.98@gmail.com',
       Subject : "Contact",
-      Body : "Name: " + document.getElementById("name").value + "<br/>Email: " + document.getElementById("email").value + "<br/>Phone: " + document.getElementById("phone").value + "<br/>Message: " + document.getElementById("name").value,
-      Attachments : [
-    {
-      name : "smtpjs.png",
-      path : "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
-    }]
+      Body : body
+      
   }).then(
     message => alert(message)
   );
+} 
+
   </script>
   
 </body>
