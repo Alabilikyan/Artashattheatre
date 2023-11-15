@@ -165,7 +165,7 @@
         </div>
         <div class="right-side">
 
-          <form>
+          <form onsubmit="sendEmail(); reset(); return false;">
 
             <div class="input-box">
               <input type="text" id="name" placeholder="Անուն Ազգանուն" required>
@@ -183,7 +183,7 @@
               <textarea class="input" id="message" placeholder="Գրել Ձեր նամակը" name="Message" cols="60" rows="5" autocomplete="off" required></textarea>
             </div>
 
-            <button class="btn" id="btn">Ուղարկել</button> 
+            <button class="btn" id="btn" type="submit">Ուղարկել</button> 
 
           </form>
 
@@ -224,28 +224,20 @@
   <script src="script.js"></script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script>
-          var btn = document.getElementById('btn');
-          btn.addEventListener('click', function(e) {
-            e.preventDefault()
-            var name = getElementById('name').value;
-            var email = getElementById('email').value;
-            var phone = getElementById('phone').value;
-            var message = getElementById('message').value;
-            var body = 'name: ' + name + '<br/> email: ' + email + '<br/> phone: ' + phone + '<br/> message: ' + message;
-
-            
-
-            Email.send({
-              SecureToken : "4737cc27-31c4-4118-91d1-9a547402fac4",
-              To : 'alabilikyan.98@gmail.com',
-              From : "artashattatron@mail.ru",
-              Subject : "Contact message",
-              Body : body
-          }).then(
-            message => alert(message)
-          );
-          })
-
+    Email.send({
+      SecureToken : "1457716a-7108-4aa7-a30f-92ba127b8239",
+      To : 'artashattatron@mail.ru',
+      From : 'alabilikyan.98@gmail.com',
+      Subject : "Contact",
+      Body : "Name: " + document.getElementById("name").value + "<br/>Email: " + document.getElementById("email").value + "<br/>Phone: " + document.getElementById("phone").value + "<br/>Message: " + document.getElementById("name").value,
+      Attachments : [
+    {
+      name : "smtpjs.png",
+      path : "https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
+    }]
+  }).then(
+    message => alert(message)
+  );
   </script>
   
 </body>
